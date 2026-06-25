@@ -146,3 +146,27 @@ Objectives:
 4. Baseline Model
 5. Streamlit MVP
 6. Dockerization
+
+## Working Agreements
+
+### Documentation
+
+- All documentation must be written in Markdown.
+- All documentation must be maintained in VS Code.
+- Documentation must be updated continuously throughout the project.
+
+### Git Workflow
+
+- New project phases require a dedicated feature branch.
+- Commits should represent a complete logical unit of work.
+- Commit messages must follow professional conventions.
+
+### Project Management
+
+- Significant decisions must be documented.
+- Daily progress must be recorded.
+- Major milestones must be registered in PROJECT_LOG.md.
+
+### Development Workflow
+
+Business Understanding → Dataset Assessment → EDA → Feature Engineering → Modeling → Application → Deployment.
