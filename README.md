@@ -1,20 +1,21 @@
-# AI-Powered Digital Marketing Revenue Prediction
+# AI-Powered Digital Marketing Revenue Forecasting
 
-Machine Learning regression project focused on predicting digital marketing campaign revenue using campaign performance metrics, engagement indicators and predictive analytics techniques.
+Machine Learning regression project focused on forecasting digital marketing campaign revenue before launch using planning-time campaign variables.
 
 ## Project Overview
 
-This project aims to develop and evaluate machine learning models capable of predicting digital marketing campaign revenue based on campaign configuration, audience characteristics and performance metrics.
+This project aims to develop and evaluate machine learning models capable of forecasting campaign revenue based on campaign configuration, audience characteristics, channel strategy and planned spend.
 
 The project follows a complete Data Science workflow, including data exploration, preprocessing, feature engineering, model training, optimization and deployment through a user-facing application.
 
 ## Business Problem
 
-Marketing teams invest significant budgets across multiple digital channels. Accurately estimating campaign revenue can support:
+Marketing teams invest significant budgets across multiple digital channels. Estimating campaign revenue before launch can support:
 
 - Budget allocation decisions
 - Campaign optimization
-- Performance forecasting
+- Launch/no-launch decisions
+- Performance forecasting before media spend is committed
 - Marketing ROI improvement
 - Data-driven decision making
 
@@ -55,7 +56,7 @@ Additional instructions can be found in `data/README.md`.
 
 ### Phase 3 – Preprocessing & Feature Engineering
 - Select target variable
-- Remove data leakage features
+- Remove post-launch and identifier leakage features
 - Encode categorical variables
 - Build preprocessing pipeline
 

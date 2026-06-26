@@ -1,4 +1,4 @@
-"""Model construction and training utilities."""
+"""Model construction and training utilities for revenue forecasting."""
 
 import time
 
@@ -14,7 +14,7 @@ from src.evaluation import evaluate_regression
 
 
 def get_model_candidates(random_state=RANDOM_STATE):
-    """Return the regression models compared in the modeling notebook."""
+    """Return candidate regressors for the forecast modeling workflow."""
     return {
         "Linear Regression": LinearRegression(),
         "Ridge": Ridge(random_state=random_state),
@@ -74,7 +74,7 @@ def compare_models(
 
 
 def build_random_forest_pipeline(preprocessor, random_state=RANDOM_STATE, **model_kwargs):
-    """Build the Random Forest pipeline used as the project baseline final model."""
+    """Build the Random Forest pipeline used for forecast model optimization."""
     estimator = RandomForestRegressor(
         n_estimators=model_kwargs.pop("n_estimators", 100),
         random_state=random_state,
@@ -98,7 +98,7 @@ def optimize_random_forest(
     n_jobs=-1,
     verbose=0,
 ):
-    """Run the RandomizedSearchCV optimization from the modeling workflow."""
+    """Run RandomizedSearchCV for the forecast Random Forest pipeline."""
     pipeline = build_random_forest_pipeline(preprocessor, random_state=random_state)
     search_space = param_distributions or RF_PARAM_DISTRIBUTIONS
 

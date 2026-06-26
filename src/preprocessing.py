@@ -1,34 +1,53 @@
-"""Preprocessing utilities aligned with the modeling notebook workflow."""
+"""Preprocessing utilities for pre-launch campaign revenue forecasting."""
 
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from pandas.api.types import is_numeric_dtype
 
-from src.config import EXCLUDED_COLUMNS, RANDOM_STATE, TARGET_COLUMN, TEST_SIZE
+from src.config import PLANNING_TIME_FEATURES, RANDOM_STATE, TARGET, TEST_SIZE
 
 
-def prepare_features_and_target(data, target_column=TARGET_COLUMN, excluded_columns=None):
-    """Create feature matrix and target vector from a raw dataset."""
+def prepare_features_and_target(
+    data,
+    target_column=TARGET,
+    feature_columns=None,
+):
+    """Create a planning-time feature matrix and target vector from raw data."""
     if target_column not in data.columns:
         raise ValueError(f"Target column `{target_column}` is not present in the data.")
 
-    excluded = excluded_columns if excluded_columns is not None else EXCLUDED_COLUMNS
-    columns_to_drop = [column for column in excluded if column in data.columns]
+    selected_features = (
+        list(feature_columns) if feature_columns is not None else PLANNING_TIME_FEATURES
+    )
+    missing_features = [
+        column for column in selected_features if column not in data.columns
+    ]
 
-    features = data.drop(columns=columns_to_drop)
-    target = data[target_column]
+    if missing_features:
+        raise ValueError(
+            "Missing required planning-time feature columns: "
+            + ", ".join(missing_features)
+        )
+
+    features = data.loc[:, selected_features].copy()
+    target = data[target_column].copy()
 
     return features, target
 
 
 def identify_feature_types(features):
     """Return numerical and categorical feature column names."""
-    numerical_features = features.select_dtypes(include=["number"]).columns.tolist()
-    categorical_features = features.select_dtypes(
-        include=["object", "category", "bool"]
-    ).columns.tolist()
+    numerical_features = [
+    column
+    for column in features.columns
+    if is_numeric_dtype(features[column]) and features[column].dtype != "bool"
+    ]
+    categorical_features = [
+        column for column in features.columns if column not in numerical_features
+    ]
 
     return numerical_features, categorical_features
 
