@@ -1,88 +1,197 @@
-# AI-Powered Digital Marketing Revenue Forecasting
+# AI Project - Regression Marketing
 
-Machine Learning regression project focused on forecasting digital marketing campaign revenue before launch using planning-time campaign variables.
+## Predicción de ingresos de campañas de marketing mediante Machine Learning
 
-## Project Overview
+Este proyecto desarrolla un modelo de Machine Learning capaz de **predecir el ingreso esperado (Revenue) de una campaña de marketing antes de su lanzamiento**, utilizando únicamente variables disponibles durante la fase de planificación.
 
-This project aims to develop and evaluate machine learning models capable of forecasting campaign revenue based on campaign configuration, audience characteristics, channel strategy and planned spend.
+El objetivo es proporcionar una herramienta que ayude a equipos de Marketing y Performance a tomar decisiones de inversión antes de ejecutar una campaña.
 
-The project follows a complete Data Science workflow, including data exploration, preprocessing, feature engineering, model training, optimization and deployment through a user-facing application.
+---
 
-## Business Problem
+# Problema de negocio
 
-Marketing teams invest significant budgets across multiple digital channels. Estimating campaign revenue before launch can support:
+Antes de lanzar una campaña publicitaria es habitual preguntarse:
 
-- Budget allocation decisions
-- Campaign optimization
-- Launch/no-launch decisions
-- Performance forecasting before media spend is committed
-- Marketing ROI improvement
-- Data-driven decision making
+- ¿Cuánto ingreso podría generar?
+- ¿Vale la pena invertir este presupuesto?
+- ¿Qué configuración ofrece mejores resultados?
 
-## Dataset
+Este proyecto intenta responder a estas preguntas mediante un modelo predictivo entrenado con datos históricos de campañas.
 
-This project uses the **Digital Marketing Performance Dataset** available on Kaggle:
+---
 
-https://www.kaggle.com/datasets/alinaboulsi/digital-marketing-performance-dataset
+# Objetivos
 
-The dataset is not included in this repository. Please download it from Kaggle and place it inside the `data/` folder.
+- Analizar un dataset de campañas digitales.
+- Realizar un análisis exploratorio de datos (EDA).
+- Construir y comparar modelos de regresión.
+- Optimizar el mejor modelo.
+- Evaluar su capacidad de generalización.
+- Desarrollar una aplicación interactiva para realizar predicciones.
 
-Additional instructions can be found in `data/README.md`.
+---
 
-## Technologies
+# Tecnologías utilizadas
 
 - Python
 - Pandas
 - NumPy
 - Scikit-Learn
 - Optuna
-- Matplotlib
-- Seaborn
 - Streamlit
+- Joblib
+- Matplotlib
+- Git
+- GitHub
 
+---
 
-## Project Roadmap
+# Estructura del proyecto
 
-### Phase 1 – Setup & Planning
-- Define business problem and project scope
-- Document dataset source and usage instructions
-- Configure repository structure
+```text
+.
+├── app/
+│   └── streamlit_app.py
+│
+├── data/
+│
+├── docs/
+│
+├── images/
+│
+├── models/
+│   └── campaign_revenue_forecast_model.joblib
+│
+├── notebooks/
+│   ├── 01_dataset_assessment.ipynb
+│   ├── 02_exploratory_data_analysis.ipynb
+│   └── 03_modeling.ipynb
+│
+├── src/
+│   ├── config.py
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── model.py
+│   ├── prediction.py
+│   ├── evaluation.py
+│   ├── train.py
+│   └── features.py
+│
+├── tests/
+│
+├── README.md
+└── requirements.txt
+```
 
-### Phase 2 – Data Understanding & EDA
-- Load and inspect dataset
-- Analyze missing values and duplicates
-- Explore target variable distribution
-- Create visualizations and insights
+---
 
-### Phase 3 – Preprocessing & Feature Engineering
-- Select target variable
-- Remove post-launch and identifier leakage features
-- Encode categorical variables
-- Build preprocessing pipeline
+# Flujo del proyecto
 
-### Phase 4 – Modeling & Evaluation
-- Train baseline regression model
-- Train ensemble models
-- Apply cross-validation
-- Optimize with Optuna
-- Evaluate using RMSE, MAE and R²
-- Analyze feature importance and residuals
+- Dataset Assessment
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- Comparación de modelos
+- Optimización mediante Optuna
+- Selección del modelo final
+- Evaluación de métricas
+- Análisis de Overfitting
+- Persistencia del modelo
+- Aplicación Streamlit
 
-### Phase 5 – Productization
-- Save trained model
-- Build Streamlit application
-- Implement feedback collection mechanism
+---
 
-### Phase 6 – Final Delivery
-- Complete technical documentation
-- Generate business insights
-- Prepare final presentation
+# Modelo seleccionado
 
-## Project Status
+El modelo final es un:
 
-🚧 In Development
+**Random Forest Regressor**
 
-## Author
+optimizado mediante búsqueda de hiperparámetros y serializado utilizando Joblib para su posterior reutilización.
 
-**Gabriela Granja**  
-Marketing, Automation & AI
+---
+
+# Resultados obtenidos
+
+| Métrica | Resultado |
+|----------|-----------|
+| R² | 0.71 |
+| RMSE | 1614.45 |
+| MAE | 267.48 |
+| Overfitting Gap | ~10 % |
+
+Estos resultados indican que el modelo es capaz de explicar aproximadamente el **71 % de la variabilidad del Revenue** utilizando únicamente información disponible antes del lanzamiento de la campaña.
+
+---
+
+# Aplicación Streamlit
+
+La aplicación permite introducir los parámetros de planificación de una campaña y obtener una predicción del Revenue esperado.
+
+## Ejecutar la aplicación
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+Una vez iniciada, la aplicación estará disponible en:
+
+```text
+http://localhost:8501
+```
+
+Desde la interfaz es posible:
+
+- Configurar los parámetros de una campaña.
+- Introducir el presupuesto previsto.
+- Obtener una estimación del Revenue esperado.
+- Validar automáticamente los datos introducidos.
+
+---
+
+# Entrenar nuevamente el modelo
+
+```bash
+python -m src.train
+```
+
+---
+
+# Ejecutar los tests
+
+```bash
+python -m pytest
+```
+
+---
+
+# Estado del proyecto
+
+## Completado
+
+- Dataset Assessment
+- Exploratory Data Analysis
+- Ingeniería de características
+- Comparación de modelos
+- Optimización de hiperparámetros
+- Selección del modelo final
+- Evaluación del modelo
+- Persistencia del modelo
+- API de predicción
+- Aplicación Streamlit (MVP)
+
+## Próximas mejoras
+
+- Registro de predicciones
+- Dockerización
+- Despliegue
+- Documentación final
+
+---
+
+# Autora
+
+**Gabriela Granja**
+
+Bootcamp de Inteligencia Artificial – Factoría F5
+
+Junio 2026
