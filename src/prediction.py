@@ -1,4 +1,4 @@
-"""Prediction utilities for trained revenue models."""
+"""Prediction utilities for trained pre-launch revenue forecast models."""
 
 from pathlib import Path
 
@@ -9,7 +9,7 @@ from src.config import MODEL_PATH
 
 
 def load_model(model_path=None):
-    """Load a trained revenue prediction model.
+    """Load a trained revenue forecast model.
 
     Parameters
     ----------
@@ -25,7 +25,7 @@ def load_model(model_path=None):
 
 
 def save_model(model, model_path=None):
-    """Persist a trained model pipeline for later prediction use."""
+    """Persist a trained forecast pipeline for later inference."""
     resolved_model_path = Path(model_path) if model_path is not None else MODEL_PATH
     resolved_model_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(model, resolved_model_path)
@@ -33,7 +33,7 @@ def save_model(model, model_path=None):
 
 
 def predict_revenue(input_data, model=None):
-    """Predict revenue for one or more rows of input features.
+    """Forecast revenue for one or more planning-time campaign inputs.
 
     `input_data` may be a pandas DataFrame, a dict representing one row, or a
     list of dicts. The loaded model is expected to be a fitted sklearn-compatible

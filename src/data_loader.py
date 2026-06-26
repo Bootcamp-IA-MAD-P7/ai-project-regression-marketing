@@ -1,10 +1,10 @@
-"""Data loading utilities for the revenue regression project."""
+"""Data loading utilities for the pre-launch revenue forecasting project."""
 
 from pathlib import Path
 
 import pandas as pd
 
-from src.config import RAW_DATA_PATH, TARGET_COLUMN
+from src.config import RAW_DATA_PATH, TARGET
 
 
 def load_raw_data(path=None, *, validate_target=True):
@@ -44,9 +44,9 @@ def load_raw_data(path=None, *, validate_target=True):
     if data.empty:
         raise ValueError(f"Raw data file contains no rows: {data_path}")
 
-    if validate_target and TARGET_COLUMN not in data.columns:
+    if validate_target and TARGET not in data.columns:
         raise ValueError(
-            f"Expected target column `{TARGET_COLUMN}` was not found in {data_path}"
+            f"Expected target column `{TARGET}` was not found in {data_path}"
         )
 
     return data

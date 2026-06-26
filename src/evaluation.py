@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 def evaluate_regression(y_true, y_pred):
-    """Return common regression metrics for revenue prediction."""
+    """Return common regression metrics for pre-launch revenue forecasts."""
     mae = mean_absolute_error(y_true, y_pred)
     mse = mean_squared_error(y_true, y_pred)
     rmse = np.sqrt(mse)

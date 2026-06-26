@@ -4,24 +4,24 @@
 
 | Field | Value |
 |---------|---------|
-| Project Name | AI-Powered Digital Marketing Revenue Prediction |
+| Project Name | AI-Powered Digital Marketing Revenue Forecasting |
 | Project Type | Machine Learning Regression |
 | Author | Gabriela Granja |
 | Repository | ai-project-regression-marketing |
 | Status | In Progress |
-| Current Phase | Sprint 0 - Planning & Governance |
+| Current Phase | Productization - Forecast Model MVP |
 
 ---
 
 ## Business Problem
 
-Marketing teams invest significant budgets across multiple digital channels. Estimating campaign revenue before launching a campaign can improve planning, budget allocation, forecasting and overall marketing performance.
+Marketing teams invest significant budgets across multiple digital channels. Estimating campaign revenue before launching a campaign can improve launch decisions, planning, budget allocation, forecasting and overall marketing performance.
 
 ---
 
 ## Project Objective
 
-Develop a machine learning solution capable of predicting digital marketing campaign revenue using campaign configuration, audience characteristics and campaign performance metrics.
+Develop a machine learning solution capable of forecasting digital marketing campaign revenue before launch using only campaign planning variables.
 
 The project aims to simulate a real-world business use case while following a complete machine learning lifecycle, from data exploration to deployment.
 
@@ -37,7 +37,7 @@ Revenue
 
 ### Status
 
-Preliminary selection pending dataset validation.
+Validated as the regression target.
 
 ---
 
@@ -127,25 +127,24 @@ Pending assessment and validation.
 
 ## Current Milestone
 
-### Product & Dataset Analysis
+### Forecast Model Productization
 
 Objectives:
 
-- Review dataset structure
-- Validate target variable
-- Detect potential data leakage
-- Define preprocessing strategy
+- Enforce planning-time feature policy in `src/`
+- Exclude post-launch performance metrics from training
+- Persist the trained forecast pipeline
+- Prepare the model for Streamlit integration
 
 ---
 
 ## Next Planned Deliverables
 
-1. Dataset Assessment
-2. Data Dictionary
-3. Initial EDA
-4. Baseline Model
-5. Streamlit MVP
-6. Dockerization
+1. Streamlit MVP
+2. Prediction input validation
+3. Feedback or prediction logging
+4. Dockerization
+5. Deployment
 
 ## Working Agreements
 
@@ -178,6 +177,6 @@ Business Understanding → Dataset Assessment → EDA → Feature Engineering �
 
 The project objective was redefined.
 
-Instead of predicting campaign revenue using post-campaign performance metrics, the project will focus on forecasting campaign revenue before launch using only planning-time variables.
+Instead of using post-launch performance metrics, the project will focus on forecasting campaign revenue before launch using only planning-time variables.
 
 See JUN-25-business-problem-definition
