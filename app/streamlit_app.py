@@ -99,28 +99,22 @@ FALLBACK_OPTIONS = {
     ],
 }
 
-USE_DATASET_OPTIONS = False
-
 @st.cache_data(show_spinner=False)
 def load_planning_options() -> dict[str, list[str]]:
     """Load categorical choices from the local dataset when it is available."""
 
-    if not USE_DATASET_OPTIONS:
-        return FALLBACK_OPTIONS
-
     if not RAW_DATA_PATH.exists():
-        return FALLBACK_OPTIONS
+        return {feature: values.copy() for feature, values in FALLBACK_OPTIONS.items()}
 
     data = pd.read_csv(RAW_DATA_PATH, usecols=PLANNING_TIME_FEATURES)
 
-    options = FALLBACK_OPTIONS.copy()
+    options = {feature: values.copy() for feature, values in FALLBACK_OPTIONS.items()}
 
     for feature in FALLBACK_OPTIONS:
-        
         if feature in data.columns:
             values = data[feature].dropna().astype(str).sort_values().unique().tolist()
             if values:
-                options[feature] = values   
+                options[feature] = values
     return options
 
 
