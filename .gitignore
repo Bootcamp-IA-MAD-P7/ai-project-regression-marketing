@@ -2,26 +2,28 @@
 data/*.csv
 data/*.xlsx
 data/*.zip
-data/*.parquet
 
-# Keep documentation
 !data/README.md
 !data/README_DATASET.md
 
-# Models
-models/*.pkl
-models/*.joblib
-
 # Python
 __pycache__/
+*.py[cod]
+
+# Pytest
+.pytest_cache/
+
+# Jupyter
 .ipynb_checkpoints/
 
-# Virtual environments
+# Virtual Environment
+.venv/
 venv/
 .env
 
 # VS Code
 .vscode/
 
-# Jupyter
-.ipynb_checkpoints/
+# System
+.DS_Store
+Thumbs.db
